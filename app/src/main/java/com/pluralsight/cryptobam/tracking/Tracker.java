@@ -25,14 +25,12 @@ public class Tracker {
         this.con = con;
         mOsVersion = Build.VERSION.RELEASE;
         mQueue = Volley.newRequestQueue(con);
-
     }
 
     private StringRequest generateTrackingStringRequest(final String eventName) {
         return new StringRequest(Request.Method.POST, TRACKING_URL,
                 response -> {
                     Log.d(TAG, "onResponse() called with: response = [" + response + "]");
-
                 },
                 error -> Log.d(TAG, "onErrorResponse() called with: error = [" + error + "]")) {
             @Override
@@ -46,42 +44,30 @@ public class Tracker {
     }
 
     public void trackOnCreate() {
-
         mQueue.add(generateTrackingStringRequest("create"));
     }
 
     public void trackOnDestroy() {
-
         mQueue.add(generateTrackingStringRequest("destroy"));
-
     }
 
     public void trackOnStart() {
-
         mQueue.add(generateTrackingStringRequest("start"));
-
     }
 
     public void trackOnResume() {
-
         mQueue.add(generateTrackingStringRequest("resume"));
-
     }
 
     public void trackOnPause() {
-
         mQueue.add(generateTrackingStringRequest("pause"));
-
     }
 
     public void trackOnStop() {
-
         mQueue.add(generateTrackingStringRequest("stop"));
-
     }
 
     public void trackLocation(int lat, int lng) {
         mQueue.add(generateTrackingStringRequest("location\t" + lat + "-" + lng));
-
     }
 }
